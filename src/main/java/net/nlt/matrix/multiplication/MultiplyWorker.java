@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Callable;
 
-import static java.lang.String.format;
 import static java.lang.System.currentTimeMillis;
 
 public class MultiplyWorker implements Callable<Long> {
@@ -43,7 +42,7 @@ public class MultiplyWorker implements Callable<Long> {
         long end = currentTimeMillis();
 
         long took = end - start;
-        LOG.debug(format(": rows [%d .. %d] calculated in %d ms", (fromRow + 1), toRow, took));
+        LOG.debug(": rows [{}..{}] calculated in {} ms", (fromRow + 1), toRow, took);
         return took;
     }
 

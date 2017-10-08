@@ -1,5 +1,8 @@
 package net.nlt.matrix.multiplication;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +15,8 @@ import static java.lang.String.format;
 import static net.nlt.matrix.multiplication.SquareMatrix.zeros;
 
 public class ConcurrentMatrixMath implements MatrixMath {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ConcurrentMatrixMath.class);
 
     private ForkJoinPool pool;
     private int parallelism;
@@ -38,6 +43,7 @@ public class ConcurrentMatrixMath implements MatrixMath {
 
         SquareMatrix result = zeros(size);
 
+        LOG.debug("Starting calculation, parallelism = {}", parallelism);
         pool.invokeAll(split(a, b, result, size));
 
         return result;
