@@ -1,11 +1,15 @@
 package net.nlt.matrix.multiplication;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.RecursiveAction;
 
 import static java.lang.String.format;
-import static java.lang.Thread.currentThread;
 
 public class MultiplyWorker extends RecursiveAction {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MultiplyWorker.class);
 
     private SquareMatrix a;
     private SquareMatrix b;
@@ -28,13 +32,13 @@ public class MultiplyWorker extends RecursiveAction {
     @Override
     protected void compute() {
         if ((toRow - fromRow) <= THRESHOLD) {
-            System.out.println(format("Rows [%d .. %d] calculated by: %s", fromRow, (toRow - 1), currentThread().getName()));
             for (int i = fromRow; i < toRow; i++) {
                 for (int j = 0; j < result.size(); j++) {
                     double value = produceRowToColumn(a.getRow(i), b.getColumn(j));
                     result.set(value, i, j);
                 }
             }
+            LOG.debug(format(": rows [%d .. %d] calculated", fromRow, (toRow - 1)));
         } else {
             int mid = (fromRow + toRow) / 2;
 
@@ -45,7 +49,7 @@ public class MultiplyWorker extends RecursiveAction {
         }
     }
 
-    private static double produceRowToColumn(double[] row, double[] col) {
+    private double produceRowToColumn(double[] row, double[] col) {
         int size = row.length;
 
         double result = 0;
