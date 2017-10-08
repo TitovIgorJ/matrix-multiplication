@@ -66,8 +66,8 @@ public class SquareMatrix {
     private boolean isMatrixSquare(double[][] matrix) {
         int rowsCount = matrix.length;
 
-        for (int i = 0; i < rowsCount; i++) {
-            if (matrix[i].length != rowsCount) {
+        for (double[] row : matrix) {
+            if (row.length != rowsCount) {
                 return false;
             }
         }
