@@ -1,14 +1,20 @@
 package net.nlt.matrix.multiplication;
 
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static net.nlt.matrix.multiplication.SquareMatrix.rand;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MatrixMathTest {
+public class ConcurrentMatrixMathTest {
 
-    private final MatrixMath mm = new MatrixMath();
+    private MatrixMath mm;
+
+    @Before
+    public void setup() throws Exception {
+        mm = new ConcurrentMatrixMath();
+    }
 
     @Test
     public void testMatmul() throws Exception {
