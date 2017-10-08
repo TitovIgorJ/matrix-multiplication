@@ -74,7 +74,7 @@ public class ConcurrentMatrixMath implements MatrixMath {
     }
 
     private int calcPerWorker(int size) {
-        return max(alignSize(size) / parallelism, 1); //max() - to avoid infinite loop when parallelism > size
+        return max(alignSize(size) / parallelism, 1); //max() - to avoid infinite loop when parallelism >= size
     }
 
     private int alignSize(int size) {
