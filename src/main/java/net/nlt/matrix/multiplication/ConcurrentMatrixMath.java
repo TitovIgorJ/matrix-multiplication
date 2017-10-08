@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ForkJoinPool;
 
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 import static java.lang.String.format;
 import static net.nlt.matrix.multiplication.SquareMatrix.zeros;
 
@@ -43,7 +44,7 @@ public class ConcurrentMatrixMath implements MatrixMath {
     }
 
     private Collection<Callable<Long>> split(SquareMatrix a, SquareMatrix b, SquareMatrix result, int size) {
-        int perWorker = max(size / parallelism, 1);
+        int perWorker = calcPerWorker(size);
 
         List<Callable<Long>> tasks = new ArrayList<>();
 
@@ -54,7 +55,7 @@ public class ConcurrentMatrixMath implements MatrixMath {
             tasks.add(task);
 
             lo = hi;
-            hi = hi + perWorker;
+            hi = min(hi + perWorker, size);
         }
 
         return tasks;
@@ -64,5 +65,15 @@ public class ConcurrentMatrixMath implements MatrixMath {
         if (a.size() != b.size()) {
             throw new IllegalArgumentException(format("Size must be equal (a = %d, b = %d)", a.size(), b.size()));
         }
+    }
+
+    private int calcPerWorker(int size) {
+        return max(alignSize(size) / parallelism, 1);
+    }
+
+    private int alignSize(int size) {
+        return size / parallelism == 0
+                ? size
+                : size + size % parallelism;
     }
 }
