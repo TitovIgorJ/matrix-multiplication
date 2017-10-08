@@ -12,6 +12,7 @@ import java.util.concurrent.ForkJoinPool;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.lang.String.format;
+import static net.nlt.matrix.multiplication.CommonUtils.nextMultiple;
 import static net.nlt.matrix.multiplication.SquareMatrix.zeros;
 
 public class ConcurrentMatrixMath implements MatrixMath {
@@ -74,12 +75,6 @@ public class ConcurrentMatrixMath implements MatrixMath {
     }
 
     private int calcPerWorker(int size) {
-        return max(alignSize(size) / parallelism, 1); //max() - to avoid infinite loop when parallelism >= size
-    }
-
-    private int alignSize(int size) {
-        return size / parallelism == 0
-                ? size
-                : size + size % parallelism;
+        return max(nextMultiple(size, parallelism) / parallelism, 1); //max() - to avoid infinite loop when parallelism >= size
     }
 }
