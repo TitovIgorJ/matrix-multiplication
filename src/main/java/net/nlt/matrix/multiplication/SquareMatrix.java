@@ -1,5 +1,7 @@
 package net.nlt.matrix.multiplication;
 
+import java.util.Random;
+
 public class SquareMatrix {
 
     private final double[][] data;
@@ -45,6 +47,20 @@ public class SquareMatrix {
 
     public static SquareMatrix zeros(int size) {
         return new SquareMatrix(new double[size][size]);
+    }
+
+    public static SquareMatrix rand(int size) {
+        double[][] result = new double[size][size];
+
+        Random r = new Random();
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                result[i][j] = r.nextGaussian();
+            }
+        }
+
+        return new SquareMatrix(result);
     }
 
     private boolean isMatrixSquare(double[][] matrix) {

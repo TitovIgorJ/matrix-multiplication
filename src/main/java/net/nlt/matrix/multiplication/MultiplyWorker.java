@@ -14,7 +14,7 @@ public class MultiplyWorker extends RecursiveAction {
     private int fromRow;
     private int toRow;
 
-    private final int THRESHOLD = 2;
+    private final int THRESHOLD = 10;
 
     public MultiplyWorker(SquareMatrix a, SquareMatrix b, SquareMatrix result, int fromRow, int toRow) {
         this.a = a;

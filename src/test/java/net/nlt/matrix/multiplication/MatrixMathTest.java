@@ -3,6 +3,7 @@ package net.nlt.matrix.multiplication;
 
 import org.junit.Test;
 
+import static net.nlt.matrix.multiplication.SquareMatrix.rand;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MatrixMathTest {
@@ -30,6 +31,16 @@ public class MatrixMathTest {
         };
 
         assertThat(mm.matmul(matrixA, matrixB).toArray()).isEqualTo(expectedResult);
+    }
+
+    @Test
+    public void testBigMatrix() throws Exception {
+        SquareMatrix a = rand(100);
+        SquareMatrix b = rand(100);
+
+        SquareMatrix c = mm.matmul(a, b);
+
+        assertThat(c).isNotNull();
     }
 
     @Test(expected = IllegalArgumentException.class)
