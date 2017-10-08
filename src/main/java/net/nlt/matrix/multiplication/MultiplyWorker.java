@@ -3,11 +3,12 @@ package net.nlt.matrix.multiplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.Callable;
 
 import static java.lang.String.format;
+import static java.lang.System.currentTimeMillis;
 
-public class MultiplyWorker extends RecursiveAction {
+public class MultiplyWorker implements Callable<Long> {
 
     private static final Logger LOG = LoggerFactory.getLogger(MultiplyWorker.class);
 
@@ -18,7 +19,6 @@ public class MultiplyWorker extends RecursiveAction {
     private int fromRow;
     private int toRow;
 
-    private final int THRESHOLD = 10;
 
     public MultiplyWorker(SquareMatrix a, SquareMatrix b, SquareMatrix result, int fromRow, int toRow) {
         this.a = a;
@@ -30,23 +30,21 @@ public class MultiplyWorker extends RecursiveAction {
     }
 
     @Override
-    protected void compute() {
-        if ((toRow - fromRow) <= THRESHOLD) {
-            for (int i = fromRow; i < toRow; i++) {
-                for (int j = 0; j < result.size(); j++) {
-                    double value = produceRowToColumn(a.getRow(i), b.getColumn(j));
-                    result.set(value, i, j);
-                }
+    public Long call() throws Exception {
+        long start = currentTimeMillis();
+
+        for (int i = fromRow; i < toRow; i++) {
+            for (int j = 0; j < result.size(); j++) {
+                double value = produceRowToColumn(a.getRow(i), b.getColumn(j));
+                result.set(value, i, j);
             }
-            LOG.debug(format(": rows [%d .. %d] calculated", fromRow, (toRow - 1)));
-        } else {
-            int mid = (fromRow + toRow) / 2;
-
-            MultiplyWorker left = new MultiplyWorker(a, b, result, fromRow, mid);
-            MultiplyWorker right = new MultiplyWorker(a, b, result, mid, toRow);
-
-            invokeAll(left, right);
         }
+
+        long end = currentTimeMillis();
+
+        long took = end - start;
+        LOG.debug(format(": rows [%d .. %d] calculated in %d ms", fromRow, (toRow - 1), took));
+        return took;
     }
 
     private double produceRowToColumn(double[] row, double[] col) {

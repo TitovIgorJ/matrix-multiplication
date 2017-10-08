@@ -7,7 +7,7 @@ import org.junit.Test;
 import static net.nlt.matrix.multiplication.SquareMatrix.rand;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ConcurrentMatrixMathTest {
+public class MatrixMathTest {
 
     private MatrixMath mm;
 
@@ -41,8 +41,8 @@ public class ConcurrentMatrixMathTest {
 
     @Test
     public void testBigMatrix() throws Exception {
-        SquareMatrix a = rand(100);
-        SquareMatrix b = rand(100);
+        SquareMatrix a = rand(7);
+        SquareMatrix b = rand(7);
 
         SquareMatrix c = mm.matmul(a, b);
 
