@@ -41,8 +41,8 @@ public class MatrixMathTest {
 
     @Test
     public void testBigMatrix() throws Exception {
-        SquareMatrix a = rand(7);
-        SquareMatrix b = rand(7);
+        SquareMatrix a = rand(98);
+        SquareMatrix b = rand(98);
 
         SquareMatrix c = mm.matmul(a, b);
 

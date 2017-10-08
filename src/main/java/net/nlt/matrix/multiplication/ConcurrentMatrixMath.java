@@ -55,7 +55,7 @@ public class ConcurrentMatrixMath implements MatrixMath {
             tasks.add(task);
 
             lo = hi;
-            hi = min(hi + perWorker, size);
+            hi = min(hi + perWorker, size); //min() - avoid ArrayOutOfBoundException
         }
 
         return tasks;
@@ -68,7 +68,7 @@ public class ConcurrentMatrixMath implements MatrixMath {
     }
 
     private int calcPerWorker(int size) {
-        return max(alignSize(size) / parallelism, 1);
+        return max(alignSize(size) / parallelism, 1); //max() - to avoid infinite loop when parallelism > size
     }
 
     private int alignSize(int size) {
