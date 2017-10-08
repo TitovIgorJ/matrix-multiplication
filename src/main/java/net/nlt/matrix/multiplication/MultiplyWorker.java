@@ -43,7 +43,7 @@ public class MultiplyWorker implements Callable<Long> {
         long end = currentTimeMillis();
 
         long took = end - start;
-        LOG.debug(format(": rows [%d .. %d] calculated in %d ms", fromRow, (toRow - 1), took));
+        LOG.debug(format(": rows [%d .. %d] calculated in %d ms", (fromRow + 1), toRow, took));
         return took;
     }
 
