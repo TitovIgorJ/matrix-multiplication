@@ -49,6 +49,20 @@ public class SquareMatrix {
         return new SquareMatrix(new double[size][size]);
     }
 
+    public static SquareMatrix identity(int size) {
+        double[][] result = new double[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i == j) {
+                    result[i][j] = 1;
+                }
+            }
+        }
+
+        return new SquareMatrix(result);
+    }
+
     public static SquareMatrix rand(int size) {
         double[][] result = new double[size][size];
 
