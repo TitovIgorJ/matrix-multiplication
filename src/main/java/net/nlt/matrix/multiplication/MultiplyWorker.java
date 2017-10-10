@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 
 import static java.lang.System.currentTimeMillis;
 
-public class MultiplyWorker implements Callable<Long> {
+class MultiplyWorker implements Callable<Long> {
 
     private static final Logger LOG = LoggerFactory.getLogger(MultiplyWorker.class);
 
@@ -19,7 +19,7 @@ public class MultiplyWorker implements Callable<Long> {
     private int toRow;
 
 
-    public MultiplyWorker(SquareMatrix a, SquareMatrix b, SquareMatrix result, int fromRow, int toRow) {
+    MultiplyWorker(SquareMatrix a, SquareMatrix b, SquareMatrix result, int fromRow, int toRow) {
         this.a = a;
         this.b = b;
         this.result = result;

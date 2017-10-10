@@ -1,11 +1,11 @@
 package net.nlt.matrix.multiplication;
 
-public class CommonUtils {
+class CommonUtils {
 
     private CommonUtils() {
     }
 
-    public static int nextMultiple(int num, int divide) {
+    static int nextMultiple(int num, int divide) {
         if (num < divide) {
             return divide;
         }
