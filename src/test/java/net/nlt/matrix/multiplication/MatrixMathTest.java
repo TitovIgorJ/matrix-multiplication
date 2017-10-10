@@ -4,6 +4,7 @@ package net.nlt.matrix.multiplication;
 import org.junit.Before;
 import org.junit.Test;
 
+import static net.nlt.matrix.multiplication.SquareMatrix.identity;
 import static net.nlt.matrix.multiplication.SquareMatrix.rand;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -42,11 +43,11 @@ public class MatrixMathTest {
     @Test
     public void testBigMatrix() throws Exception {
         SquareMatrix a = rand(98);
-        SquareMatrix b = rand(98);
+        SquareMatrix b = identity(98);
 
         SquareMatrix c = mm.matmul(a, b);
 
-        assertThat(c).isNotNull();
+        assertThat(c.toArray()).isEqualTo(a.toArray());
     }
 
     @Test(expected = IllegalArgumentException.class)
