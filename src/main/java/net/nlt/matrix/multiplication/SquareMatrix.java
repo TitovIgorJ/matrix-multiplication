@@ -23,18 +23,30 @@ public class SquareMatrix {
         data[row][col] = value;
     }
 
-    public double[] getRow(int index) {
-        return data[index];
+    public double[] getRow(int row) {
+        return data[row];
     }
 
-    public double[] getColumn(int colIndex) {
+    public double[] getColumn(int col) {
         double[] result = new double[size];
 
-        for (int i = 0; i < size; i++) {
-            result[i] = data[i][colIndex];
+        for (int row = 0; row < size; row++) {
+            result[row] = data[row][col];
         }
 
         return result;
+    }
+    
+    public SquareMatrix transpose() {
+        double[][] result = new double[size][size];
+
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                result[row][col] = data[col][row];
+            }
+        }
+        
+        return new SquareMatrix(result);
     }
 
     public int size() {

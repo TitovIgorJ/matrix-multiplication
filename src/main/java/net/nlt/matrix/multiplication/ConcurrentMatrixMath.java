@@ -45,12 +45,13 @@ public class ConcurrentMatrixMath implements MatrixMath {
         SquareMatrix result = zeros(size);
 
         LOG.debug("Starting calculation, parallelism = {}", parallelism);
-        pool.invokeAll(split(a, b, result, size));
+        pool.invokeAll(split(a, b, result));
 
         return result;
     }
 
-    private Collection<Callable<Long>> split(SquareMatrix a, SquareMatrix b, SquareMatrix result, int size) {
+    private Collection<Callable<Long>> split(SquareMatrix a, SquareMatrix b, SquareMatrix result) {
+        int size = a.size();
         int perWorker = calcPerWorker(size);
 
         List<Callable<Long>> tasks = new ArrayList<>();
