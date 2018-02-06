@@ -1,14 +1,12 @@
 package net.nlt.matrix.multiplication;
 
-import java.util.Random;
+import static java.lang.Math.random;
 
 public class SquareMatrix {
 
     private final double[][] data;
     private final int size;
-
     private SquareMatrixColumnCache columnCache;
-
     private boolean columnCacheEnabled = true;
 
     public SquareMatrix(double[][] data) {
@@ -45,11 +43,9 @@ public class SquareMatrix {
     public static SquareMatrix rand(int size) {
         double[][] result = new double[size][size];
 
-        Random r = new Random();
-
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                result[i][j] = r.nextGaussian();
+                result[i][j] = random();
             }
         }
 
