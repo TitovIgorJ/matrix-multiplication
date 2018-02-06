@@ -42,8 +42,8 @@ public class MatrixMathTest {
 
     @Test
     public void testWithIdentityMatrix() throws Exception {
-        SquareMatrix m1 = SquareMatrix.rand(10);
-        SquareMatrix identityM = SquareMatrix.identity(10);
+        SquareMatrix m1 = rand(10);
+        SquareMatrix identityM = identity(10);
 
         assertThat(mm.matmul(m1, identityM).toArray()).isEqualTo(m1.toArray());
     }

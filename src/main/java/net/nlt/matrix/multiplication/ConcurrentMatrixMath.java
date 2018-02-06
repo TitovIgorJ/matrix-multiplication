@@ -11,11 +11,10 @@ import java.util.concurrent.ForkJoinPool;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static java.lang.String.format;
 import static net.nlt.matrix.multiplication.CommonUtils.nextMultiple;
 import static net.nlt.matrix.multiplication.SquareMatrix.zeros;
 
-public class ConcurrentMatrixMath implements MatrixMath {
+public class ConcurrentMatrixMath extends AbstractMatrixMath {
 
     private static final Logger LOG = LoggerFactory.getLogger(ConcurrentMatrixMath.class);
 
@@ -69,13 +68,9 @@ public class ConcurrentMatrixMath implements MatrixMath {
         return tasks;
     }
 
-    private static void validate(SquareMatrix a, SquareMatrix b) {
-        if (a.size() != b.size()) {
-            throw new IllegalArgumentException(format("Size must be equal (a = %d, b = %d)", a.size(), b.size()));
-        }
-    }
-
     private int calcPerWorker(int size) {
-        return max(nextMultiple(size, parallelism) / parallelism, 1); //max() - to avoid infinite loop when parallelism >= size
+        int nextMultiple = nextMultiple(size, parallelism);
+        int perWorker = nextMultiple / parallelism;
+        return max(perWorker, 1); //max() - to avoid infinite loop when parallelism >= size
     }
 }
