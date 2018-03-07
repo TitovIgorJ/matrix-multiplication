@@ -1,6 +1,8 @@
 package net.nlt.matrix.multiplication;
 
 import static java.lang.Math.random;
+import static java.util.Arrays.deepToString;
+import static java.util.Arrays.fill;
 
 public class SquareMatrix {
 
@@ -57,14 +59,17 @@ public class SquareMatrix {
     }
 
     public void set(double value, int row, int col) {
+        if (columnCacheEnabled) {
+            columnCache.delete(col);
+        }
         data[row][col] = value;
     }
 
-    public double[] getRow(int row) {
+    double[] getRow(int row) {
         return data[row];
     }
 
-    public double[] getColumn(int col) {
+    double[] getColumn(int col) {
         if (columnCacheEnabled && columnCache.contains(col)) {
             return columnCache.get(col);
         } else {
@@ -102,14 +107,17 @@ public class SquareMatrix {
         return data;
     }
 
+    @Override
+    public String toString() {
+        return deepToString(this.data);
+    }
+
     private static class SquareMatrixColumnCache {
-        private int size;
 
         private double[][] columns;
         private boolean[] presence;
 
         public SquareMatrixColumnCache(int size) {
-            this.size = size;
             this.columns = new double[size][size];
             this.presence = new boolean[size];
         }
@@ -125,6 +133,14 @@ public class SquareMatrix {
 
         double[] get(int col) {
             return columns[col];
+        }
+
+        void delete(int col) {
+            this.presence[col] = false;
+        }
+
+        void delete() {
+            fill(presence, false);
         }
     }
 
