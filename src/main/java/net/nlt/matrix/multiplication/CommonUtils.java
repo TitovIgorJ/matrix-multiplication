@@ -5,14 +5,14 @@ class CommonUtils {
     private CommonUtils() {
     }
 
-    static int nextMultiple(int num, int divide) {
-        if (num < divide) {
-            return divide;
+    static int nextMultiple(int number, int divider) {
+        if (number < divider) {
+            return divider;
         }
 
-        int remainder = num % divide;
+        int remainder = number % divider;
         return remainder == 0
-                ? num
-                : num + (divide - remainder);
+                ? number
+                : number + (divider - remainder);
     }
 }
