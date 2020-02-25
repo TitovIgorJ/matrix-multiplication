@@ -15,6 +15,6 @@ public interface SquareMatrix {
     double[][] toArray();
 
     static SquareMatrix of(double[][] data) {
-        return new SimpleSquareMatrix(data);
+        return new SquareMatrixCachingDecorator(new SimpleSquareMatrix(data));
     }
 }
