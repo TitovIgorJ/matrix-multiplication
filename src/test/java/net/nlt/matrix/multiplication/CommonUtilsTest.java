@@ -1,14 +1,14 @@
 package net.nlt.matrix.multiplication;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static net.nlt.matrix.multiplication.CommonUtils.nextMultiple;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CommonUtilsTest {
+class CommonUtilsTest {
 
     @Test
-    public void testAlignSize() throws Exception {
+    void testAlignSize() {
         assertThat(nextMultiple(0, 4)).isEqualTo(4);
 
         assertThat(nextMultiple(3, 4)).isEqualTo(4);

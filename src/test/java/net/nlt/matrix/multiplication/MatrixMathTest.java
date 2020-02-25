@@ -1,24 +1,19 @@
 package net.nlt.matrix.multiplication;
 
 import net.nlt.matrix.multiplication.matrix.SquareMatrix;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static net.nlt.matrix.multiplication.SquareMatrices.identity;
 import static net.nlt.matrix.multiplication.SquareMatrices.rand;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MatrixMathTest {
+class MatrixMathTest {
 
-    private MatrixMath mm;
-
-    @Before
-    public void setup() throws Exception {
-        mm = new ConcurrentMatrixMath();
-    }
+    private final MatrixMath mm = new ConcurrentMatrixMath();
 
     @Test
-    public void testMatmul() throws Exception {
+    void testMatmul() {
         double[][] matrixA = {
                 {1, 2, 3},
                 {4, 5, 6},
@@ -41,7 +36,7 @@ public class MatrixMathTest {
     }
 
     @Test
-    public void testWithIdentityMatrix() throws Exception {
+    void testWithIdentityMatrix() {
         SquareMatrix m1 = rand(10);
         SquareMatrix identityM = identity(10);
 
@@ -49,7 +44,7 @@ public class MatrixMathTest {
     }
 
     @Test
-    public void testBigMatrix() throws Exception {
+    void testBigMatrix() {
         SquareMatrix a = rand(98);
         SquareMatrix b = identity(98);
 
@@ -58,8 +53,8 @@ public class MatrixMathTest {
         assertThat(c.toArray()).isEqualTo(a.toArray());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testValidateMatrixDifferentSize() throws Exception {
+    @Test
+    void testValidateMatrixDifferentSize() {
         double[][] a = {
                 {1, 1},
                 {1, 1}
@@ -71,6 +66,6 @@ public class MatrixMathTest {
                 {1, 1, 1}
         };
 
-        mm.matmul(a, b);
+        assertThrows(IllegalArgumentException.class, () -> mm.matmul(a, b));
     }
 }
