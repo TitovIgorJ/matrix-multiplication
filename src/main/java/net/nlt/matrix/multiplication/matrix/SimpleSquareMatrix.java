@@ -2,7 +2,7 @@ package net.nlt.matrix.multiplication.matrix;
 
 import static java.util.Arrays.deepToString;
 
-public class SimpleSquareMatrix implements SquareMatrix {
+class SimpleSquareMatrix implements SquareMatrix {
 
     private final double[][] data;
     private final int size;

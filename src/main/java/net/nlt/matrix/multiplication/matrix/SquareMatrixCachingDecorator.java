@@ -2,12 +2,12 @@ package net.nlt.matrix.multiplication.matrix;
 
 import static java.util.Arrays.fill;
 
-public class SquareMatrixCachingDecorator implements SquareMatrix {
+class SquareMatrixCachingDecorator implements SquareMatrix {
 
     private SquareMatrix squareMatrixDelegate;
     private SquareMatrixColumnCache columnCache;
 
-    public SquareMatrixCachingDecorator(SquareMatrix delegate) {
+    SquareMatrixCachingDecorator(SquareMatrix delegate) {
         this.squareMatrixDelegate = delegate;
         columnCache = new SquareMatrixColumnCache(delegate.size());
     }
