@@ -1,25 +1,20 @@
 package net.nlt.matrix.multiplication;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class SquareMatrixTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    private MatrixMath mm;
+class SquareMatrixTest {
 
-    @Before
-    public void setup() throws Exception {
-        mm = new ConcurrentMatrixMath();
-    }
+    private final MatrixMath mm = new ConcurrentMatrixMath();
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testValidateNotSquareMatrix() throws Exception {
+    @Test
+    void testValidateNotSquareMatrix() {
         double[][] notSquareMatrix = {
                 {1},
                 {0, 1},
                 {1, 0, 1}
         };
-
-        mm.matmul(notSquareMatrix, notSquareMatrix);
+        assertThrows(IllegalArgumentException.class, () -> mm.matmul(notSquareMatrix, notSquareMatrix));
     }
 }
