@@ -1,4 +1,4 @@
-package net.nlt.matrix.multiplication;
+package net.nlt.matrix.multiplication.matrix;
 
 import static java.util.Arrays.deepToString;
 import static java.util.Arrays.fill;
@@ -10,7 +10,7 @@ public class SimpleSquareMatrix implements SquareMatrix {
     private SquareMatrixColumnCache columnCache;
     private boolean columnCacheEnabled = true;
 
-    public SimpleSquareMatrix(double[][] data) {
+    SimpleSquareMatrix(double[][] data) {
         if (!isMatrixSquare(data)) {
             throw new IllegalArgumentException("Matrix is not square");
         }
@@ -58,18 +58,6 @@ public class SimpleSquareMatrix implements SquareMatrix {
 
             return result;
         }
-    }
-
-    public SquareMatrix transpose() {
-        double[][] result = new double[size][size];
-
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                result[row][col] = data[col][row];
-            }
-        }
-
-        return new SimpleSquareMatrix(result);
     }
 
     @Override

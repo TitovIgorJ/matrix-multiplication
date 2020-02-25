@@ -1,5 +1,7 @@
 package net.nlt.matrix.multiplication;
 
+import net.nlt.matrix.multiplication.matrix.SquareMatrix;
+
 import static java.lang.String.format;
 
 abstract class AbstractMatrixMath implements MatrixMath {

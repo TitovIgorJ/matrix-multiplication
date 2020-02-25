@@ -1,5 +1,6 @@
 package net.nlt.matrix.multiplication;
 
+import net.nlt.matrix.multiplication.matrix.SquareMatrix;
 import org.junit.Before;
 import org.junit.Test;
 

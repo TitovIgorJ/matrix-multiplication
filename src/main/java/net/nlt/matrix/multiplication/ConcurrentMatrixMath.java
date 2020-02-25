@@ -1,5 +1,6 @@
 package net.nlt.matrix.multiplication;
 
+import net.nlt.matrix.multiplication.matrix.SquareMatrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +34,7 @@ public class ConcurrentMatrixMath extends AbstractMatrixMath {
 
     @Override
     public SquareMatrix matmul(double[][] a, double[][] b) {
-        return matmul(new SimpleSquareMatrix(a), new SimpleSquareMatrix(b));
+        return matmul(SquareMatrix.of(a), SquareMatrix.of(b));
     }
 
     @Override

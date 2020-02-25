@@ -1,4 +1,4 @@
-package net.nlt.matrix.multiplication;
+package net.nlt.matrix.multiplication.matrix;
 
 public interface SquareMatrix {
 
@@ -13,4 +13,8 @@ public interface SquareMatrix {
     int size();
 
     double[][] toArray();
+
+    static SquareMatrix of(double[][] data) {
+        return new SimpleSquareMatrix(data);
+    }
 }
