@@ -1,10 +1,11 @@
 package net.nlt.matrix.multiplication;
 
+import net.nlt.matrix.multiplication.matrix.SquareMatrix;
 import org.junit.Before;
 import org.junit.Test;
 
-import static net.nlt.matrix.multiplication.SquareMatrix.identity;
-import static net.nlt.matrix.multiplication.SquareMatrix.rand;
+import static net.nlt.matrix.multiplication.SquareMatrices.identity;
+import static net.nlt.matrix.multiplication.SquareMatrices.rand;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MatrixMathTest {

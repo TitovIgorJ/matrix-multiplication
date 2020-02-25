@@ -1,5 +1,6 @@
 package net.nlt.matrix.multiplication;
 
+import net.nlt.matrix.multiplication.matrix.SquareMatrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
