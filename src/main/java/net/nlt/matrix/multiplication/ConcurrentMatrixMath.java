@@ -12,7 +12,7 @@ import java.util.concurrent.ForkJoinPool;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static net.nlt.matrix.multiplication.CommonUtils.nextMultiple;
-import static net.nlt.matrix.multiplication.SquareMatrix.zeros;
+import static net.nlt.matrix.multiplication.SquareMatrices.zeros;
 
 public class ConcurrentMatrixMath extends AbstractMatrixMath {
 
@@ -33,7 +33,7 @@ public class ConcurrentMatrixMath extends AbstractMatrixMath {
 
     @Override
     public SquareMatrix matmul(double[][] a, double[][] b) {
-        return matmul(new SquareMatrix(a), new SquareMatrix(b));
+        return matmul(new SimpleSquareMatrix(a), new SimpleSquareMatrix(b));
     }
 
     @Override
