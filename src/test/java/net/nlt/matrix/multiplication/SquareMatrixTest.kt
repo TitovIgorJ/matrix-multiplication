@@ -1,20 +1,21 @@
-package net.nlt.matrix.multiplication;
+package net.nlt.matrix.multiplication
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Test
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+internal class SquareMatrixTest {
 
-class SquareMatrixTest {
-
-    private final MatrixMath mm = new ConcurrentMatrixMath();
+    private val mm: MatrixMath = ConcurrentMatrixMath()
 
     @Test
-    void testValidateNotSquareMatrix() {
-        double[][] notSquareMatrix = {
-                {1},
-                {0, 1},
-                {1, 0, 1}
-        };
-        assertThrows(IllegalArgumentException.class, () -> mm.matmul(notSquareMatrix, notSquareMatrix));
+    fun testValidateNotSquareMatrix() {
+        val notSquareMatrix = arrayOf(
+                doubleArrayOf(1.0),
+                doubleArrayOf(0.0, 1.0),
+                doubleArrayOf(1.0, 0.0, 1.0)
+        )
+        assertThrows(IllegalArgumentException::class.java) {
+            mm.matmul(notSquareMatrix, notSquareMatrix)
+        }
     }
 }

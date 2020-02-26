@@ -1,22 +1,18 @@
-package net.nlt.matrix.multiplication;
+package net.nlt.matrix.multiplication
 
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
 
-import static net.nlt.matrix.multiplication.CommonUtils.nextMultiple;
-import static org.assertj.core.api.Assertions.assertThat;
-
-class CommonUtilsTest {
+internal class CommonUtilsTest {
 
     @Test
-    void testAlignSize() {
-        assertThat(nextMultiple(0, 4)).isEqualTo(4);
-
-        assertThat(nextMultiple(3, 4)).isEqualTo(4);
-        assertThat(nextMultiple(4, 4)).isEqualTo(4);
-
-        assertThat(nextMultiple(5, 4)).isEqualTo(8);
-        assertThat(nextMultiple(6, 4)).isEqualTo(8);
-        assertThat(nextMultiple(7, 4)).isEqualTo(8);
-        assertThat(nextMultiple(8, 4)).isEqualTo(8);
+    fun testAlignSize() {
+        Assertions.assertThat(CommonUtils.nextMultiple(0, 4)).isEqualTo(4)
+        Assertions.assertThat(CommonUtils.nextMultiple(3, 4)).isEqualTo(4)
+        Assertions.assertThat(CommonUtils.nextMultiple(4, 4)).isEqualTo(4)
+        Assertions.assertThat(CommonUtils.nextMultiple(5, 4)).isEqualTo(8)
+        Assertions.assertThat(CommonUtils.nextMultiple(6, 4)).isEqualTo(8)
+        Assertions.assertThat(CommonUtils.nextMultiple(7, 4)).isEqualTo(8)
+        Assertions.assertThat(CommonUtils.nextMultiple(8, 4)).isEqualTo(8)
     }
 }
